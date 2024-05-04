@@ -7,10 +7,7 @@ export class PoolsController {
 		// @ts-ignore
 		private poolsService: PoolService,
 		private poolsRepository: PoolsRepository,
-	) {
-		this.poolsService = poolsService;
-		console.log(poolsService);
-	}
+	) {}
 
 	public getPools = async (
 		_req: IncomingMessage,
