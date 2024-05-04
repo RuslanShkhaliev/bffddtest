@@ -1,4 +1,4 @@
-import { Asset } from '@/models';
+import { Asset } from '../../models';
 
 export class AssetModel {
 	static makeKey(asset: Asset): string {

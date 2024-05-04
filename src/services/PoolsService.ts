@@ -1,9 +1,8 @@
-import { appConfig } from '@/config';
-import { LongPolling } from '@/interfaces';
-import { ioc } from '@/ioc';
-import { PoolsRepository, RemotePool } from '@/modules/pools';
-import { fetchPools } from '@/modules/pools/api';
-import { makeKey } from '@/utils';
+import { appConfig } from '../config';
+import { LongPolling } from '../interfaces';
+import { getIoC } from '../ioc';
+import { fetchPools, PoolsRepository, RemotePool } from '../modules/pools';
+import { makeKey } from '../utils';
 
 export class PoolService {
 	constructor(
@@ -37,6 +36,7 @@ export class PoolService {
 }
 
 const filterPools = (pools: RemotePool[]): RemotePool[] => {
+	const ioc = getIoC();
 	const assetsRepo = ioc.getInstance('assetsRepository');
 	return pools.filter((pool) => {
 		const isKnown = !pool.assets.some(

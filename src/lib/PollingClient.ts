@@ -1,5 +1,5 @@
-import { fetchPools } from '@/modules/pools/api';
 import { EventEmitter } from 'stream';
+import { fetchPools } from '../modules/pools';
 
 interface Options {
 	ms: number;

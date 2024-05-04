@@ -1,4 +1,4 @@
-import { getIoC } from '@/ioc';
+import { getIoC } from '../../ioc';
 
 export const poolsRouter = () => {
 	const ioc = getIoC();

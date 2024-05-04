@@ -1,8 +1,8 @@
-import { bootstrap } from '@/bootstrap';
-import { ioc } from '@/ioc';
-import { assetsRouter } from '@/modules/assets/router';
-import { poolsRouter } from '@/modules/pools/router';
 import dotenv from 'dotenv';
+import { bootstrap } from './bootstrap';
+import { ioc } from './ioc';
+import { assetsRouter } from './modules/assets';
+import { poolsRouter } from './modules/pools';
 import { createServer } from './server';
 
 dotenv.config();

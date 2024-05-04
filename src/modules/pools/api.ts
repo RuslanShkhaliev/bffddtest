@@ -1,4 +1,4 @@
-import { appConfig } from '@/config';
+import { appConfig } from '../../config';
 import { RemotePool } from './interfaces';
 
 const baseUrl = appConfig.apiUrl;

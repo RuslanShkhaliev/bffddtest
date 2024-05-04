@@ -1,4 +1,4 @@
-import { RemotePool } from '@/modules/pools/interfaces';
+import { RemotePool } from './interfaces';
 
 export class PoolsRepository {
 	private pools: RemotePool[] = [];

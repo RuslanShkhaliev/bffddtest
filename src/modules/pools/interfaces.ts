@@ -1,4 +1,4 @@
-import { AssetSimple } from '@/models';
+import { AssetSimple } from '../../models';
 
 export interface RemotePool {
 	address: string;

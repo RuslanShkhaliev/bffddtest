@@ -1,4 +1,4 @@
-import { AssetsRepository, fetchAssets } from '@/modules/assets';
+import { AssetsRepository, fetchAssets } from '../modules/assets';
 
 export class AssetsService {
 	constructor(private assetsRepository: AssetsRepository) {}

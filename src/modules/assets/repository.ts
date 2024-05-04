@@ -1,5 +1,5 @@
-import { Asset } from '@/models';
-import { AssetModel } from 'src/modules/assets/model';
+import { Asset } from '../../models';
+import { AssetModel } from './model';
 
 export class AssetsRepository {
 	private assets: AssetModel[] = [];

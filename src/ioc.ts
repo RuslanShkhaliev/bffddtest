@@ -1,10 +1,9 @@
-import { type Constructor, IoC } from '@/lib/IoC';
-import { PollingClient } from '@/lib/PollingClient';
-import { AssetsController } from '@/modules/assets/controller';
-import { AssetsRepository } from '@/modules/assets/repository';
-import { PoolsController, PoolsRepository } from '@/modules/pools';
-import { AssetsService } from '@/services/AssetsService';
-import { PoolService } from '@/services/PoolsService';
+import { type Constructor, IoC } from './lib/IoC';
+import { PollingClient } from './lib/PollingClient';
+import { AssetsController, AssetsRepository } from './modules/assets';
+import { PoolsController, PoolsRepository } from './modules/pools';
+import { AssetsService } from './services/AssetsService';
+import { PoolService } from './services/PoolsService';
 
 interface ServiceRegistry {
 	[key: string]: Constructor<any>;
@@ -26,20 +25,18 @@ export const getIoC = () => {
 };
 export const registerContainer = () => {
 	const ioc = getIoC();
-	ioc.register('assetsRepository', AssetsRepository);
-	ioc.register(
-		'assetsService',
-		AssetsService,
-		ioc.getInstance('assetsRepository'),
-	);
-
-	ioc.register(
-		'assetsController',
-		AssetsController,
-		ioc.getInstance('assetsService'),
-	);
-
 	ioc
+		.register('assetsRepository', AssetsRepository)
+		.register(
+			'assetsService',
+			AssetsService,
+			ioc.getInstance('assetsRepository'),
+		)
+		.register(
+			'assetsController',
+			AssetsController,
+			ioc.getInstance('assetsService'),
+		)
 		.register('poolsRepository', PoolsRepository)
 		.register(
 			'poolsService',

@@ -1,6 +1,6 @@
-import { PoolsRepository } from '@/modules/pools/repository';
-import { PoolService } from '@/services/PoolsService';
 import { IncomingMessage, ServerResponse } from 'http';
+import { PoolService } from '../../services/PoolsService';
+import { PoolsRepository } from './repository';
 
 export class PoolsController {
 	constructor(

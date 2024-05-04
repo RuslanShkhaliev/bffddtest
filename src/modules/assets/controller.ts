@@ -1,5 +1,5 @@
-import { AssetsService } from '@/services/AssetsService';
 import { IncomingMessage, ServerResponse } from 'node:http';
+import { AssetsService } from '../../services/AssetsService';
 
 export class AssetsController {
 	constructor(private assetsService: AssetsService) {}
