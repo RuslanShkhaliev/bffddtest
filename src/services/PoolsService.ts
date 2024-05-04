@@ -13,6 +13,7 @@ export class PoolService {
 	public getPools = async () => {
 		const data = await fetchPools();
 		const pools = filterPools(data);
+		console.log(pools, 'l');
 		this.poolsRepository.updatePools(filterPools(pools));
 
 		return pools;

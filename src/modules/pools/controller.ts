@@ -6,18 +6,16 @@ export class PoolsController {
 	constructor(
 		// @ts-ignore
 		private poolsService: PoolService,
+		// @ts-ignore
 		private poolsRepository: PoolsRepository,
-	) {
-		this.poolsService = poolsService;
-		console.log(poolsService);
-	}
+	) {}
 
 	public getPools = async (
 		_req: IncomingMessage,
 		res: ServerResponse,
 	): Promise<void> => {
 		try {
-			const data = this.poolsRepository.getPools();
+			const data = await this.poolsService.getPools();
 			res.end(JSON.stringify(data));
 		} catch (err: unknown) {
 			console.log(err);
