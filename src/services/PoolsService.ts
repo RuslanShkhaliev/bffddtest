@@ -19,23 +19,24 @@ export class PoolService {
 	};
 
 	public subscribeUpdate = (
-		callback?: (pools: RemotePool[]) => void,
-		fallback?: (err: unknown) => void,
+		callback?: (error: unknown, pools?: RemotePool[]) => void,
 	) => {
+		const { apiUrl } = appConfig.endpoints;
+
 		const { disconnect } = this.client
-			.connect(`${appConfig.apiUrl}/pools-lite`, {
+			.connect(`${apiUrl}/pools-lite`, {
 				ms: 10_000,
 				immediate: true,
 			})
 			.onResponse<RemotePool[]>((data) => {
-				console.log('Pools updated', data.length);
+				console.log('Pools loaded', data.length);
 				const pools = filterPools(data);
 				console.log('Pools filtered', pools.length);
-				callback?.(pools);
+				callback?.(null, pools);
 				this.poolsRepository.updatePools(pools);
 			})
 			.onError((err) => {
-				fallback?.(err);
+				callback?.(err);
 			});
 
 		return disconnect;
