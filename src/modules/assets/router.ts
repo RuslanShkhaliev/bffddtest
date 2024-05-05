@@ -5,6 +5,6 @@ export const assetsRouter = () => {
 	const assetsController = ioc.getInstance('assetsController');
 
 	return {
-		assets: assetsController.getAssets,
+		'/assets': assetsController.getAssets,
 	};
 };

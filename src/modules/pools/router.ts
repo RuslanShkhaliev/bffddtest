@@ -5,6 +5,6 @@ export const poolsRouter = () => {
 
 	const poolsController = ioc.getInstance('poolsController');
 	return {
-		pools: poolsController.getPools,
+		'/pools': poolsController.getPools,
 	};
 };

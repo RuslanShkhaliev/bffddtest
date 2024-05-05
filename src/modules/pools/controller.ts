@@ -14,12 +14,14 @@ export class PoolsController {
 		res: ServerResponse,
 	): Promise<void> => {
 		try {
+			res.writeHead(200, { 'Content-Type': 'application/json' });
+
 			const data = this.poolsRepository.getPools();
 			res.end(JSON.stringify(data));
 		} catch (err: unknown) {
 			console.log(err);
 			res.writeHead(500);
-			res.end(new Error('Ошибка получения данных пулов'));
+			res.end(new Error('Ошибка получения пулов'));
 		}
 	};
 }

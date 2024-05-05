@@ -1,4 +1,4 @@
-import { EventEmitter } from 'stream';
+import { EventEmitter } from 'node:events';
 import { fetchPools } from '../modules/pools';
 
 interface Options {
@@ -13,7 +13,7 @@ export class PollingClient {
 	private emitter = new EventEmitter();
 	private timer: NodeJS.Timeout | null = null;
 
-	public connect(url: string, options?: Options) {
+	public connect = (url: string, options?: Options) => {
 		const { ms = 10_000, immediate = false } = options || {};
 
 		if (immediate) {
@@ -43,26 +43,24 @@ export class PollingClient {
 		}, ms);
 
 		return this;
-	}
+	};
 
-	public onError(handler: ErrorHandler) {
+	public onError = (handler: ErrorHandler) => {
 		this.emitter.on('error', handler);
 
 		return this;
-	}
+	};
 
-	public onResponse<T>(handler: ResponseHandler<T>) {
+	public onResponse = <T>(handler: ResponseHandler<T>) => {
 		this.emitter.on('response', handler);
 
 		return this;
-	}
+	};
 
-	public disconnect() {
+	public disconnect = (): void => {
 		if (this.timer) {
 			clearInterval(this.timer);
 			this.timer = null;
 		}
-
-		return this;
-	}
+	};
 }

@@ -14,12 +14,9 @@ export const createServer = (router: Router) => {
 			'Content-Type, Authorization',
 		); // Разрешить заголовки
 
-		const { url } = req;
-		const route = url?.split('/')[1] || '';
-		console.log(route, 'route');
-		const controller = router[route];
+		const { url = '' } = req;
+		const controller = router[url];
 		if (controller) {
-			res.writeHead(200, { 'Content-Type': 'application/json' });
 			controller(req, res);
 		} else {
 			res.writeHead(404);

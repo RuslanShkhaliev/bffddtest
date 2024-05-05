@@ -12,6 +12,7 @@ interface Options {
 }
 export interface LongPolling {
 	connect(url: string, options?: Options): this;
+	disconnect(): void;
 	onError(handler: ErrorHandler): this;
 	onResponse<T>(handler: ResponseHandler<T>): this;
 }
