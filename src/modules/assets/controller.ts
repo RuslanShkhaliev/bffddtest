@@ -6,6 +6,8 @@ export class AssetsController {
 
 	public async getAssets(_req: IncomingMessage, res: ServerResponse) {
 		try {
+			res.writeHead(200, { 'Content-Type': 'application/json' });
+
 			const assets = await this.assetsService.getAssets();
 			res.end(JSON.stringify(assets));
 		} catch (error) {

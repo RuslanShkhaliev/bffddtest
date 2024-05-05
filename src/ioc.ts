@@ -1,3 +1,4 @@
+import { EventEmitter } from 'node:events';
 import { type Constructor, IoC } from './lib/IoC';
 import { PollingClient } from './lib/PollingClient';
 import { AssetsController, AssetsRepository } from './modules/assets';
@@ -7,6 +8,7 @@ import { PoolService } from './services/PoolsService';
 
 interface ServiceRegistry {
 	[key: string]: Constructor<any>;
+	$ee: Constructor<EventEmitter>;
 	assetsRepository: Constructor<AssetsRepository>;
 	assetsService: Constructor<AssetsService>;
 	assetsController: Constructor<AssetsController>;
@@ -26,6 +28,7 @@ export const getIoC = () => {
 export const registerContainer = () => {
 	const ioc = getIoC();
 	ioc
+		.register('$ee', EventEmitter)
 		.register('assetsRepository', AssetsRepository)
 		.register(
 			'assetsService',
@@ -49,5 +52,6 @@ export const registerContainer = () => {
 			PoolsController,
 			ioc.getInstance('poolsService'),
 			ioc.getInstance('poolsRepository'),
+			ioc.getInstance('$ee'),
 		);
 };
